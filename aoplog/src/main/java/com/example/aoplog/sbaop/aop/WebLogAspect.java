@@ -38,7 +38,7 @@ public class WebLogAspect {
 
     private static final String REQUEST_PARAMS = "requestParams";
 
-    @Pointcut("execution(* cn.itweknow.sbaop.controller..*.*(..))")
+    @Pointcut("execution(* *.controller..*.*(..))")
     public void webLog() {}
 
     @Before(value = "webLog()&& @annotation(controllerWebLog)")

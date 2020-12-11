@@ -1,0 +1,68 @@
+
+
+### =================================演示登录================================================
+POST {{baseUrl}}/gtwlxt-boot/authenticate
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "crv587"
+}
+
+> {% client.global.set("access-token", response.body.json.token); %}
+
+
+###  采购评价新增
+POST {{baseUrl}}/evaluate/purchase-evaluation/add
+Accept: application/json
+Content-Type: application/json
+Cookie: access-token={{access-token}}
+Referer: http://192.168.137.84:8080/gtwlxt-boot
+
+{
+  "orderNo": "1000045143",
+  "logisticsNo": "1200529112000016",
+  "accountName": "博士001",
+  "shopName": "博士001",
+  "logisticsScore": "5",
+  "comment": "wuxinghaoping服务不错",
+  "commentTime": "2020-11-20 12:00:00",
+  "commentSource": "某某采购人"
+}
+
+### 模拟推送数据
+POST {{baseUrl}}/api/out/evaluate/purchase-evaluation/pushData
+Accept: application/json
+Content-Type: application/json
+
+{
+    "token": "d004b206f3cb45e19d9fdac10923e971",
+  "systemId": "GTSC",
+
+"purchaseEvaluation":{
+  "orderNo": "11111",
+  "logisticsNo": "3333333",
+  "accountName": "博士001",
+  "shopName": "博士001",
+  "logisticsScore": "5",
+  "comment": "wuxinghaoping服务不错",
+  "commentTime": "2020-11-20 12:03:00",
+  "commentSource": "某某采购人"
+}
+}
+
+### 采购评价分页查询
+GET {{baseUrl}}/ca/casystem-order-info/pagination?size=5
+Cookie: access-token={{access-token}}
+
+### 演示GET请求
+GET {{baseUrl}}/ca/casystem-order-info/pagination?size=5
+Cookie: access-token={{access-token}}
+### Authorization: Bearer {{access_token}}
+
+### =================================================================================
+
+
+###  get-test
+GET {{baseUrl}}/weblog/get-test?name=get-test
+Content-Type: application/x-www-form-urlencod
